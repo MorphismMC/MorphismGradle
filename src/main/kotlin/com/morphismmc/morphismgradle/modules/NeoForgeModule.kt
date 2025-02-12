@@ -2,7 +2,6 @@ package com.morphismmc.morphismgradle.modules
 
 import com.morphismmc.morphismgradle.IPluginModule
 import com.morphismmc.morphismgradle.ProjectProperties
-import com.morphismmc.morphismgradle.Versions
 import net.neoforged.moddevgradle.boot.ModDevPlugin
 import net.neoforged.moddevgradle.dsl.NeoForgeExtension
 import org.gradle.api.Project
@@ -26,11 +25,11 @@ class NeoForgeModule : IPluginModule {
             plugins.apply(ModDevPlugin::class.java)
             configure<NeoForgeExtension> {
                 // Specify the version of NeoForge to use.
-                version = Versions.NEOFORGE
+                version = properties.neo_version
 
                 parchment {
-                    minecraftVersion.set(Versions.MC)
-                    mappingsVersion.set(Versions.PARCHMENT)
+                    minecraftVersion.set(properties.minecraft_version)
+                    mappingsVersion.set(properties.parchment_version)
                 }
 
                 mods {
@@ -106,11 +105,11 @@ class NeoForgeModule : IPluginModule {
                 val generateModMetadata = tasks.register<ProcessResources>("generateModMetadata") {
 
                     val replaceProperties = mapOf(
-                        "minecraft_version" to Versions.MC,
-                        "minecraft_version_range" to Versions.MC_RANGE,
-                        "neo_version" to Versions.NEOFORGE,
-                        "neo_version_range" to Versions.NEOFORGE_RANGE,
-                        "loader_version_range" to Versions.LOADER_RANGE,
+                        "minecraft_version" to properties.minecraft_version,
+                        "minecraft_version_range" to properties.minecraft_version_range,
+                        "neo_version" to properties.neo_version,
+                        "neo_version_range" to properties.neo_version_range,
+                        "loader_version_range" to properties.loader_version_range,
                         "mod_id" to properties.mod_id,
                         "mod_name" to properties.mod_name,
                         "mod_license" to properties.mod_license,

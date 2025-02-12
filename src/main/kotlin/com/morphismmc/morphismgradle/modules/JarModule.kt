@@ -2,7 +2,6 @@ package com.morphismmc.morphismgradle.modules
 
 import com.morphismmc.morphismgradle.IPluginModule
 import com.morphismmc.morphismgradle.ProjectProperties
-import com.morphismmc.morphismgradle.Versions
 import org.gradle.api.Project
 import org.gradle.api.plugins.BasePluginExtension
 import org.gradle.api.tasks.SourceSetContainer
@@ -15,7 +14,7 @@ class JarModule : IPluginModule {
     override fun onApply(properties: ProjectProperties, project: Project) {
         project.apply<Project> {
             configure<BasePluginExtension> {
-                archivesName.set("${properties.mod_id}-${Versions.MC}")
+                archivesName.set("${properties.mod_id}-${properties.minecraft_version}")
             }
 
             tasks.register<Jar>("sourcesJar") {
