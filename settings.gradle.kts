@@ -24,5 +24,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "MorphismGradle"
+rootProject.name = "morphismgradle-plugin"
 

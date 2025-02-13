@@ -4,8 +4,12 @@ plugins {
     id("com.gradle.plugin-publish") version "1.2.1"
 }
 
-group = "com.morphismmc"
+group = "com.morphismmc.morphismgradle"
 version = "1.0"
+
+kotlin {
+    jvmToolchain(21)
+}
 
 repositories {
     mavenCentral()
@@ -26,14 +30,6 @@ dependencies {
     implementation(libs.foojay)
 }
 
-tasks.test {
-    useJUnitPlatform()
-}
-
-kotlin {
-    jvmToolchain(21)
-}
-
 gradlePlugin {
     plugins {
         create("morphismgradle") {
@@ -42,4 +38,8 @@ gradlePlugin {
             displayName = "Morphism Gradle Plugin"
         }
     }
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
