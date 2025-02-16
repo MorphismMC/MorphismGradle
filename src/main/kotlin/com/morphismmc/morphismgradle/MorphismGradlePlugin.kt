@@ -1,30 +1,22 @@
 package com.morphismmc.morphismgradle
 
-import com.morphismmc.morphismgradle.modules.*
-import io.freefair.gradle.plugins.lombok.LombokPlugin
+import com.morphismmc.morphismgradle.dsl.MorphismExtension
+import com.morphismmc.morphismgradle.modules.CoreModule
+import com.morphismmc.morphismgradle.modules.IdeIntegrationModule
+import com.morphismmc.morphismgradle.modules.NeoForgeModule
+import com.morphismmc.morphismgradle.modules.PublishingModule
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.create
 
 class MorphismGradlePlugin : Plugin<Project> {
+
     override fun apply(target: Project) {
-        val modInfo = ProjectProperties(target)
-        RepositoriesModule().onApply(modInfo, target)
-        IdeIntegrationModule().onApply(modInfo, target)
-        JavaModule().onApply(modInfo, target)
-        NeoForgeModule().onApply(modInfo, target)
-        JarModule().onApply(modInfo, target)
-        PublishingModule().onApply(modInfo, target)
-
-        target.apply<Project> {
-            version = modInfo.mod_version
-            group = modInfo.mod_group_id
-
-            dependencies {
-                "compileOnly"("org.jetbrains:annotations:${Versions.JETBRAINS_ANNOTATIONS}")
-            }
-
-            plugins.apply(LombokPlugin::class.java)
-        }
+        val properties = ProjectProperties(target)
+        val extension = target.extensions.create<MorphismExtension>("morphism", properties)
+        CoreModule().onApply(extension, properties, target)
+        NeoForgeModule().onApply(extension, properties, target)
+        PublishingModule().onApply(extension, properties, target)
+        IdeIntegrationModule().onApply(extension, properties, target)
     }
 }

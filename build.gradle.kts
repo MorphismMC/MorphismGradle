@@ -4,7 +4,7 @@ plugins {
     id("com.gradle.plugin-publish") version "1.2.1"
 }
 
-group = "com.morphismmc.morphismgradle"
+group = "com.morphismmc"
 version = "1.0"
 
 kotlin {
@@ -27,7 +27,6 @@ dependencies {
     testImplementation(kotlin("test"))
     implementation(libs.modDevGradle)
     implementation(libs.lombok)
-    implementation(libs.foojay)
 }
 
 gradlePlugin {
