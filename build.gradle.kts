@@ -24,7 +24,6 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
     implementation(libs.modDevGradle)
     implementation(libs.lombok)
 }
@@ -37,8 +36,4 @@ gradlePlugin {
             displayName = "Morphism Gradle Plugin"
         }
     }
-}
-
-tasks.test {
-    useJUnitPlatform()
 }
