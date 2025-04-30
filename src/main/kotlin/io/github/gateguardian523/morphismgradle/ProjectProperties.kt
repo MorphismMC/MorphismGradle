@@ -1,4 +1,4 @@
-package com.morphismmc.morphismgradle
+package io.github.gateguardian523.morphismgradle
 
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.provideDelegate

@@ -1,18 +1,19 @@
-package com.morphismmc.morphismgradle.modules
+package io.github.gateguardian523.morphismgradle.modules
 
-import com.morphismmc.morphismgradle.IPluginModule
-import com.morphismmc.morphismgradle.ProjectProperties
-import com.morphismmc.morphismgradle.dsl.MorphismExtension
-import com.morphismmc.morphismgradle.utils.EnvUtils
+import io.github.gateguardian523.morphismgradle.PluginModule
+import io.github.gateguardian523.morphismgradle.ProjectProperties
+import io.github.gateguardian523.morphismgradle.dsl.MorphismExtension
+import io.github.gateguardian523.morphismgradle.utils.isJetbrainsRuntime
 import net.neoforged.moddevgradle.boot.ModDevPlugin
 import net.neoforged.moddevgradle.dsl.NeoForgeExtension
 import org.gradle.api.Project
 import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.kotlin.dsl.*
+import org.gradle.kotlin.dsl.get
 import org.gradle.language.jvm.tasks.ProcessResources
 import org.slf4j.event.Level
 
-class NeoForgeModule : IPluginModule {
+class NeoForgeModule : PluginModule {
 
     override fun onApply(extension: MorphismExtension, properties: ProjectProperties, project: Project) {
         project.apply<Project> {
@@ -28,7 +29,7 @@ class NeoForgeModule : IPluginModule {
                 addModdingDependenciesTo(sourceSets["test"])
 
                 mods {
-                    create(properties.mod_id) {
+                    register(properties.mod_id) {
                         sourceSet(sourceSets["main"])
                         sourceSet(sourceSets["gameTest"])
                         sourceSet(sourceSets["dataGen"])
@@ -36,9 +37,9 @@ class NeoForgeModule : IPluginModule {
                 }
 
                 runs {
-                    create("client") {
+                    register("client") {
                         client()
-                        if (EnvUtils.isJetbrainsRuntime()) {
+                        if (isJetbrainsRuntime()) {
                             jvmArgument("-XX:+AllowEnhancedClassRedefinition")
                         }
                         sourceSet = sourceSets["gameTest"]
@@ -46,7 +47,7 @@ class NeoForgeModule : IPluginModule {
                         systemProperty("neoforge.enabledGameTestNamespaces", properties.mod_id)
                     }
 
-                    create("server") {
+                    register("server") {
                         server()
                         programArgument("--nogui")
                         sourceSet = sourceSets["gameTest"]
@@ -56,13 +57,13 @@ class NeoForgeModule : IPluginModule {
                     // This run config launches GameTestServer and runs all registered gametests, then exits.
                     // By default, the server will crash when no gametests are provided.
                     // The gametest system is also enabled by default for other run configs under the /test command.
-                    create("gameTestServer") {
+                    register("gameTestServer") {
                         type = "gameTestServer"
                         sourceSet = sourceSets["gameTest"]
                         systemProperty("neoforge.enabledGameTestNamespaces", properties.mod_id)
                     }
 
-                    create("data") {
+                    register("data") {
                         data()
                         programArguments.addAll(
                             "--mod", properties.mod_id, "--all",

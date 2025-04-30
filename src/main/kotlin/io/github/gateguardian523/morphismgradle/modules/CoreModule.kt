@@ -1,9 +1,9 @@
-package com.morphismmc.morphismgradle.modules
+package io.github.gateguardian523.morphismgradle.modules
 
-import com.morphismmc.morphismgradle.IPluginModule
-import com.morphismmc.morphismgradle.ProjectProperties
-import com.morphismmc.morphismgradle.Versions
-import com.morphismmc.morphismgradle.dsl.MorphismExtension
+import io.github.gateguardian523.morphismgradle.PluginModule
+import io.github.gateguardian523.morphismgradle.ProjectProperties
+import io.github.gateguardian523.morphismgradle.Versions
+import io.github.gateguardian523.morphismgradle.dsl.MorphismExtension
 import org.gradle.api.Project
 import org.gradle.api.plugins.BasePluginExtension
 import org.gradle.api.plugins.JavaLibraryPlugin
@@ -13,8 +13,9 @@ import org.gradle.api.tasks.bundling.Jar
 import org.gradle.api.tasks.compile.JavaCompile
 import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.kotlin.dsl.*
+import org.gradle.kotlin.dsl.get
 
-class CoreModule: IPluginModule {
+class CoreModule: PluginModule {
     override fun onApply(extension: MorphismExtension, properties: ProjectProperties, project: Project) {
         project.apply<Project> {
             version = properties.mod_version

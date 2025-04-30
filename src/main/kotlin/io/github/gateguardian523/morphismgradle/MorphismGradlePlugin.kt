@@ -1,10 +1,10 @@
-package com.morphismmc.morphismgradle
+package io.github.gateguardian523.morphismgradle
 
-import com.morphismmc.morphismgradle.dsl.MorphismExtension
-import com.morphismmc.morphismgradle.modules.CoreModule
-import com.morphismmc.morphismgradle.modules.IdeIntegrationModule
-import com.morphismmc.morphismgradle.modules.NeoForgeModule
-import com.morphismmc.morphismgradle.modules.PublishingModule
+import io.github.gateguardian523.morphismgradle.dsl.MorphismExtension
+import io.github.gateguardian523.morphismgradle.modules.CoreModule
+import io.github.gateguardian523.morphismgradle.modules.IdeIntegrationModule
+import io.github.gateguardian523.morphismgradle.modules.NeoForgeModule
+import io.github.gateguardian523.morphismgradle.modules.PublishingModule
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.create

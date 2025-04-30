@@ -1,22 +1,24 @@
-package com.morphismmc.morphismgradle.modules
+package io.github.gateguardian523.morphismgradle.modules
 
-import com.morphismmc.morphismgradle.IPluginModule
-import com.morphismmc.morphismgradle.ProjectProperties
-import com.morphismmc.morphismgradle.dsl.MorphismExtension
-import com.morphismmc.morphismgradle.utils.EnvUtils
+import io.github.gateguardian523.morphismgradle.PluginModule
+import io.github.gateguardian523.morphismgradle.ProjectProperties
+import io.github.gateguardian523.morphismgradle.dsl.MorphismExtension
+import io.github.gateguardian523.morphismgradle.utils.isEclipse
+import io.github.gateguardian523.morphismgradle.utils.isIdea
+import io.github.gateguardian523.morphismgradle.utils.isVsCode
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.plugins.ide.eclipse.EclipsePlugin
 import org.gradle.plugins.ide.idea.IdeaPlugin
 import org.gradle.plugins.ide.idea.model.IdeaModel
 
-class IdeIntegrationModule : IPluginModule {
+class IdeIntegrationModule : PluginModule {
 
     override fun onApply(extension: MorphismExtension, properties: ProjectProperties, project: Project) {
         when {
-            EnvUtils.isIdea() -> project.idea()
-            EnvUtils.isEclipse() -> project.eclipse()
-            EnvUtils.isVsCode() -> project.vsCode()
+            isIdea() -> project.idea()
+            isEclipse() -> project.eclipse()
+            isVsCode() -> project.vsCode()
         }
     }
 

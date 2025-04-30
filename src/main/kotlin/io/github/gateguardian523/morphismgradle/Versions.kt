@@ -1,4 +1,4 @@
-package com.morphismmc.morphismgradle
+package io.github.gateguardian523.morphismgradle
 
 object Versions {
     const val JUNIT = "5.10.2"

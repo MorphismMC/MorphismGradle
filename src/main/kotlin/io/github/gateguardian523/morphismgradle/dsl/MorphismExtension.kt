@@ -1,8 +1,8 @@
-package com.morphismmc.morphismgradle.dsl
+package io.github.gateguardian523.morphismgradle.dsl
 
-import com.morphismmc.morphismgradle.ProjectProperties
-import com.morphismmc.morphismgradle.Versions
 import io.freefair.gradle.plugins.lombok.LombokPlugin
+import io.github.gateguardian523.morphismgradle.ProjectProperties
+import io.github.gateguardian523.morphismgradle.Versions
 import net.neoforged.moddevgradle.dsl.NeoForgeExtension
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -12,6 +12,7 @@ import org.gradle.api.tasks.Nested
 import org.gradle.api.tasks.bundling.Jar
 import org.gradle.api.tasks.testing.Test
 import org.gradle.kotlin.dsl.*
+import org.gradle.kotlin.dsl.get
 import org.gradle.language.base.plugins.LifecycleBasePlugin
 
 abstract class MorphismExtension(private val project: Project, private val property: ProjectProperties) {
