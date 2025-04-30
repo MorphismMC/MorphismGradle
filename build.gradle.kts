@@ -4,7 +4,7 @@ plugins {
     id("com.gradle.plugin-publish") version "1.2.1"
 }
 
-group = "com.morphismmc"
+group = "io.github.morphismmc"
 version = "1.0"
 
 kotlin {
@@ -33,11 +33,11 @@ gradlePlugin {
         website = "https://github.com/MorphismMC/MorphismGradle"
         vcsUrl = "https://github.com/MorphismMC/MorphismGradle.git"
         create("morphismgradle") {
-            id = "io.github.gateguardian523.morphismgradle"
+            id = "io.github.morphismmc.morphismgradle"
             displayName = "Morphism Gradle Plugin"
             description = "A plugin that helps you setup neoforge mod development environment"
             tags = listOf("minecraft", "neoforge", "modding", "moddevgradle", "utility")
-            implementationClass = "io.github.gateguardian523.morphismgradle.MorphismGradlePlugin"
+            implementationClass = "io.github.morphismmc.morphismgradle.MorphismGradlePlugin"
         }
     }
 }

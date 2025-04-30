@@ -1,8 +1,8 @@
-package io.github.gateguardian523.morphismgradle.modules
+package io.github.morphismmc.morphismgradle.modules
 
-import io.github.gateguardian523.morphismgradle.PluginModule
-import io.github.gateguardian523.morphismgradle.ProjectProperties
-import io.github.gateguardian523.morphismgradle.dsl.MorphismExtension
+import io.github.morphismmc.morphismgradle.PluginModule
+import io.github.morphismmc.morphismgradle.ProjectProperties
+import io.github.morphismmc.morphismgradle.dsl.MorphismExtension
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication

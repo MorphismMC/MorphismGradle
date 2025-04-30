@@ -1,11 +1,11 @@
-package io.github.gateguardian523.morphismgradle.modules
+package io.github.morphismmc.morphismgradle.modules
 
-import io.github.gateguardian523.morphismgradle.PluginModule
-import io.github.gateguardian523.morphismgradle.ProjectProperties
-import io.github.gateguardian523.morphismgradle.dsl.MorphismExtension
-import io.github.gateguardian523.morphismgradle.utils.isEclipse
-import io.github.gateguardian523.morphismgradle.utils.isIdea
-import io.github.gateguardian523.morphismgradle.utils.isVsCode
+import io.github.morphismmc.morphismgradle.PluginModule
+import io.github.morphismmc.morphismgradle.ProjectProperties
+import io.github.morphismmc.morphismgradle.dsl.MorphismExtension
+import io.github.morphismmc.morphismgradle.utils.isEclipse
+import io.github.morphismmc.morphismgradle.utils.isIdea
+import io.github.morphismmc.morphismgradle.utils.isVsCode
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.plugins.ide.eclipse.EclipsePlugin

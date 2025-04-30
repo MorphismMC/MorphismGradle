@@ -1,4 +1,4 @@
-package io.github.gateguardian523.morphismgradle.utils
+package io.github.morphismmc.morphismgradle.utils
 
 private val VENDOR_PROPERTIES: List<String> = listOf("java.vendor", "java.vm.vendor")
 

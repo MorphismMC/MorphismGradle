@@ -1,8 +1,8 @@
-package io.github.gateguardian523.morphismgradle.dsl
+package io.github.morphismmc.morphismgradle.dsl
 
 import io.freefair.gradle.plugins.lombok.LombokPlugin
-import io.github.gateguardian523.morphismgradle.ProjectProperties
-import io.github.gateguardian523.morphismgradle.Versions
+import io.github.morphismmc.morphismgradle.ProjectProperties
+import io.github.morphismmc.morphismgradle.Versions
 import net.neoforged.moddevgradle.dsl.NeoForgeExtension
 import org.gradle.api.Action
 import org.gradle.api.Project
