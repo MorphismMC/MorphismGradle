@@ -1,8 +1,8 @@
 package io.github.morphismmc.morphismgradle.dsl
 
 import io.freefair.gradle.plugins.lombok.LombokPlugin
+import io.github.morphismmc.morphismgradle.JUNIT_VERSION
 import io.github.morphismmc.morphismgradle.ProjectProperties
-import io.github.morphismmc.morphismgradle.Versions
 import net.neoforged.moddevgradle.dsl.NeoForgeExtension
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -50,7 +50,7 @@ abstract class MorphismExtension(private val project: Project, private val prope
     fun useJUnit() {
         project.apply<Project> {
             dependencies {
-                "testImplementation"("org.junit.jupiter:junit-jupiter:${Versions.JUNIT}")
+                "testImplementation"("org.junit.jupiter:junit-jupiter:${JUNIT_VERSION}")
                 "testRuntimeOnly"("org.junit.platform:junit-platform-launcher")
                 "testImplementation"("net.neoforged:testframework:${property.neo_version}")
             }

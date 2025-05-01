@@ -1,8 +1,8 @@
 package io.github.morphismmc.morphismgradle.modules
 
+import io.github.morphismmc.morphismgradle.JETBRAINS_ANNOTATIONS_VERSION
 import io.github.morphismmc.morphismgradle.PluginModule
 import io.github.morphismmc.morphismgradle.ProjectProperties
-import io.github.morphismmc.morphismgradle.Versions
 import io.github.morphismmc.morphismgradle.dsl.MorphismExtension
 import org.gradle.api.Project
 import org.gradle.api.plugins.BasePluginExtension
@@ -56,7 +56,7 @@ class CoreModule: PluginModule {
             }
 
             dependencies {
-                "compileOnly"("org.jetbrains:annotations:${Versions.JETBRAINS_ANNOTATIONS}")
+                "compileOnly"("org.jetbrains:annotations:${JETBRAINS_ANNOTATIONS_VERSION}")
             }
         }
     }

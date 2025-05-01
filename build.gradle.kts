@@ -1,7 +1,8 @@
 plugins {
     kotlin("jvm") version "2.0.20"
     `kotlin-dsl`
-    id("com.gradle.plugin-publish") version "1.2.1"
+    alias(libs.plugins.pluginPublish)
+    alias(libs.plugins.buildConfig)
 }
 
 group = "io.github.morphismmc"
@@ -11,21 +12,22 @@ kotlin {
     jvmToolchain(21)
 }
 
-repositories {
-    mavenCentral()
-    gradlePluginPortal()
-    maven {
-        name = "NeoForged"
-        setUrl("https://maven.neoforged.net/releases")
-        mavenContent {
-            includeGroup("net.neoforged")
-        }
+buildConfig {
+    useKotlinOutput {
+        topLevelConstants = true
     }
+    buildConfigField("JUNIT_VERSION", providers.gradleProperty("junit"))
+    buildConfigField("JETBRAINS_ANNOTATIONS_VERSION", providers.gradleProperty("jetbrainsAnnotations"))
+}
+
+repositories {
+    gradlePluginPortal()
 }
 
 dependencies {
     implementation(libs.modDevGradle)
     implementation(libs.lombok)
+    implementation(libs.buildConfig)
 }
 
 gradlePlugin {
