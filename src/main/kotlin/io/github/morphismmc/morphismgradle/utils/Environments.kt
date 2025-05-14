@@ -1,17 +1,6 @@
 package io.github.morphismmc.morphismgradle.utils
 
-private val VENDOR_PROPERTIES: List<String> = listOf("java.vendor", "java.vm.vendor")
-
-fun isJetbrainsRuntime() = VENDOR_PROPERTIES.any {
-    System.getProperty(it)?.contains("JetBrains") == true
-}
-
 fun isIdea() = "idea.active".getBooleanProperty()
-
-/**
- * @return true if IntelliJ is syncing its project model with Gradle.
- */
-fun isIdeaSync() = "idea.sync.active".getBooleanProperty()
 
 /**
  * @return true if running under Eclipse (either Task execution or otherwise)

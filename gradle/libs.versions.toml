@@ -1,0 +1,9 @@
+[versions]
+modDev = "2.0.76"
+pluginPublish = "1.2.1"
+
+[libraries]
+modDev = { group = "net.neoforged.moddev", name = "net.neoforged.moddev.gradle.plugin", version.ref = "modDev" }
+
+[plugins]
+pluginPublish = { id = "com.gradle.plugin-publish", version.ref = "pluginPublish" }
