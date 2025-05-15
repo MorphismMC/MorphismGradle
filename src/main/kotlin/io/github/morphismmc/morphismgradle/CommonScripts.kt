@@ -18,12 +18,8 @@ import org.gradle.plugins.ide.idea.IdeaPlugin
 import org.gradle.plugins.ide.idea.model.IdeaModel
 
 internal fun Project.configureProjectBase(modProperties: ModProperties) {
-    version = modProperties.modVersion
+    version = "${modProperties.minecraftVersion}-${modProperties.modVersion}"
     group = modProperties.modGroupId
-
-    base {
-        archivesName = "${modProperties.modId}-${modProperties.minecraftVersion}"
-    }
 
     tasks.withType<JavaCompile> {
         options.encoding = Charsets.UTF_8.name()

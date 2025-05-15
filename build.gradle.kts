@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "io.github.morphismmc"
-version = "1.1"
+version = "1.1.0"
 
 kotlin {
     jvmToolchain(21)
@@ -16,10 +16,6 @@ repositories {
 
 dependencies {
     implementation(libs.modDev)
-}
-
-gradlePlugin {
-
 }
 
 gradlePlugin {
