@@ -4,7 +4,7 @@
 
 ## 简介
 
-Morphism Gradle 是一款基于 [ModDevGradle] 的约定插件，为 Minecraft 模组开发提供开箱即用的构建环境。
+Morphism Gradle 是一款基于 [ModDevGradle] 的约定插件，为 Minecraft 模组开发提供开箱即用的开发环境。
 
 ## 使用
 
@@ -63,7 +63,7 @@ mod_group_id=com.example
 
 ### 资源文件处理
 
-自动扫描src/main/templates目录下的模板文件，将文件中的`${属性名}`替换为项目属性值并加入到主源集资源。
+自动扫描`src/main/templates`目录下的模板文件，将文件中的`${属性名}`替换为项目属性值并加入到主源集资源。
 
 ### 数据生成
 
@@ -90,13 +90,13 @@ morphism {
 
 #### hotswap
 
-- enabled：是否启用热交换，默认值为true
-- useAgent：是否使用HotswapAgent，默认值为false
+- enabled：是否启用热交换，默认值为`true`
+- useAgent：是否使用HotswapAgent，默认值为`false`
 
 #### gameLogging
 
 - logLevel：游戏日志级别，默认值为`Level.DEBUG`
-- enabledMarkers：启用的日志标记，默认值为REGISTRIES
+- enabledMarkers：启用的日志标记，默认值为`REGISTRIES`
 - disabledMarkers：禁用的日志标记，默认值为空
 
 #### mixinDebug
@@ -148,7 +148,7 @@ morphism {
 
 ### Delombok的源代码JAR
 
-类似 Java 插件的 withSourceJar()，当项目使用 Lombok 插件时，会对源代码进行Delombok处理，生成无 Lombok 注解的干净源代码
+类似 Java 插件的 withSourceJar()，当项目使用 [lombok] 插件时，会对源代码进行Delombok处理，生成无 Lombok 注解的干净源代码
 JAR。
 
 #### 配置
@@ -203,3 +203,5 @@ morphism {
 [neoforge]: https://neoforged.net/
 
 [moddevgradle]: https://github.com/neoforged/ModDevGradle
+
+[lombok]: https://plugins.gradle.org/plugin/io.freefair.lombok
