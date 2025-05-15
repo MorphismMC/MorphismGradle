@@ -50,7 +50,7 @@ mod_group_id=com.example
 - Sets the project `version` to `minecraft_version-mod_version`
 - Sets the base filename of the archive to `modId`
 - Configures `JavaCompile` tasks to read source files using UTF-8 encoding
-- Adds a `localRuntime` dependency configuration for declaring optional dependencies used only for runtime testing, which won't be pulled by dependencies of this mod. LegacyForge users should use `modLocalRuntime` to declare deobfuscated dependencies.
+- Adds a `localRuntime` dependency configuration for declaring optional dependencies used only for runtime testing, which won't be pulled by dependencies of this mod. LegacyForge users should use `modLocalRuntime` to declare obfuscated dependencies.
 
 ### ModDevGradle Convention Configuration
 
