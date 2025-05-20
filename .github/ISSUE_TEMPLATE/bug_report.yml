@@ -43,7 +43,7 @@ body:
       required: true
   - type: textarea
     attributes:
-      label: Additional Information
+      label: ":information_source: Additional Information"
       description: Any additional information you wish to provide. Please add anything which did not fit into the other sections here.
   - type: markdown
     attributes:
