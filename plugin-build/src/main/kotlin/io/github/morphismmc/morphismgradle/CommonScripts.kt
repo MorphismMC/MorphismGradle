@@ -1,8 +1,8 @@
 package io.github.morphismmc.morphismgradle
 
-import gradle.kotlin.dsl.accessors._9b5b54fdfd43768c8058f11c9a728393.base
 import gradle.kotlin.dsl.accessors._9b5b54fdfd43768c8058f11c9a728393.main
 import gradle.kotlin.dsl.accessors._9b5b54fdfd43768c8058f11c9a728393.sourceSets
+import gradle.kotlin.dsl.accessors._9b5b54fdfd43768c8058f11c9a728393.test
 import io.github.morphismmc.morphismgradle.dsl.ModExtension
 import io.github.morphismmc.morphismgradle.utils.isEclipse
 import io.github.morphismmc.morphismgradle.utils.isIdea
@@ -17,12 +17,26 @@ import org.gradle.plugins.ide.eclipse.EclipsePlugin
 import org.gradle.plugins.ide.idea.IdeaPlugin
 import org.gradle.plugins.ide.idea.model.IdeaModel
 
-internal fun Project.configureProjectBase(modProperties: ModProperties) {
+internal fun Project.configureProject(modProperties: ModProperties) {
     version = "${modProperties.minecraftVersion}-${modProperties.modVersion}"
     group = modProperties.modGroupId
 
     tasks.withType<JavaCompile> {
         options.encoding = Charsets.UTF_8.name()
+    }
+
+    configurations {
+        // Sets up a dependency configuration called 'localRuntime'.
+        // This configuration should be used instead of 'runtimeOnly' to declare
+        // a dependency that will be present for runtime testing but that is
+        // "optional", meaning it will not be pulled by dependents of this mod.
+        val localRuntime by creating
+        named(sourceSets.main.get().runtimeClasspathConfigurationName) {
+            extendsFrom(localRuntime)
+        }
+        named(sourceSets.test.get().runtimeClasspathConfigurationName) {
+            extendsFrom(localRuntime)
+        }
     }
 
     when {
@@ -48,16 +62,14 @@ internal fun Project.configureProjectBase(modProperties: ModProperties) {
     }
 }
 
-internal fun ModDevExtension.configureModBase(modProperties: ModProperties) {
+internal fun ModDevExtension.configureMod(modProperties: ModProperties) {
     val main = modProperties.project.sourceSets.main.get()
     parchment {
         minecraftVersion = modProperties.minecraftVersion
         mappingsVersion = modProperties.parchmentVersion
     }
-    mods {
-        register(modProperties.modId) {
-            sourceSet(main)
-        }
+    val mod = mods.register(modProperties.modId) {
+        sourceSet(main)
     }
     runs {
         register("client") {
@@ -65,12 +77,14 @@ internal fun ModDevExtension.configureModBase(modProperties: ModProperties) {
             sourceSet = main
             // Empty = all namespaces.
             systemProperty("neoforge.enabledGameTestNamespaces", modProperties.modId)
+            loadedMods.add(mod)
         }
         register("server") {
             server()
             programArgument("--nogui")
             sourceSet = main
             systemProperty("neoforge.enabledGameTestNamespaces", modProperties.modId)
+            loadedMods.add(mod)
         }
     }
 }
@@ -144,20 +158,11 @@ internal fun Project.configureDataGen(options: ModExtension.DataGenOptions, modP
 }
 
 internal fun Project.configureModMetadata() {
-    val generateModMetadata = tasks.register<ProcessResources>("generateModMetadata") {
-        val pattern = "\\$\\{(.+?)}".toRegex()
-        val replaceProperties = mutableMapOf<String, String>()
-        val tree = fileTree("src/main/templates").visit {
-            if (!isDirectory) {
-                pattern.findAll(file.readText())
-                    .map { it.groupValues[1] }
-                    .filter { this@configureModMetadata.hasProperty(it) }
-                    .forEach { replaceProperties[it] = this@configureModMetadata.property(it).toString() }
-            }
-        }
-        inputs.properties(replaceProperties)
-        expand(replaceProperties)
-        from(tree)
+    val generateModMetadata by tasks.registering(ProcessResources::class) {
+        val props = properties.mapValues { it.value.toString() }
+        inputs.properties(props)
+        expand(props)
+        from("src/main/templates")
         into("build/generated/sources/modMetadata")
     }
     the<ModDevExtension>().ideSyncTask(generateModMetadata)

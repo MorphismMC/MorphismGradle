@@ -1,9 +1,9 @@
 [versions]
-modDev = "2.0.76"
-pluginPublish = "1.2.1"
+jade = "15.8.3+neoforge"
+lombok = "8.7.1"
 
 [libraries]
-modDev = { group = "net.neoforged.moddev", name = "net.neoforged.moddev.gradle.plugin", version.ref = "modDev" }
+jade = { group = "maven.modrinth", name = "jade", version.ref = "jade" }
 
 [plugins]
-pluginPublish = { id = "com.gradle.plugin-publish", version.ref = "pluginPublish" }
+lombok = { id = "io.freefair.lombok", version.ref = "lombok" }

@@ -1,6 +1,8 @@
 package io.github.morphismmc.morphismgradle.dsl
 
-import gradle.kotlin.dsl.accessors._bfe43d23ef1e82168548d9455ede94ac.*
+import gradle.kotlin.dsl.accessors._bfe43d23ef1e82168548d9455ede94ac.annotationProcessor
+import gradle.kotlin.dsl.accessors._bfe43d23ef1e82168548d9455ede94ac.api
+import gradle.kotlin.dsl.accessors._bfe43d23ef1e82168548d9455ede94ac.jarJar
 import gradle.kotlin.dsl.accessors._bfe43d23ef1e82168548d9455ede94ac.mixin
 import io.github.morphismmc.morphismgradle.ModProperties
 import org.gradle.api.Project

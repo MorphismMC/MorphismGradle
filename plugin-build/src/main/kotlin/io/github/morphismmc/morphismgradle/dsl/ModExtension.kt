@@ -1,8 +1,8 @@
 package io.github.morphismmc.morphismgradle.dsl
 
+import gradle.kotlin.dsl.accessors._9b5b54fdfd43768c8058f11c9a728393.main
 import gradle.kotlin.dsl.accessors._9b5b54fdfd43768c8058f11c9a728393.sourceSets
 import gradle.kotlin.dsl.accessors._9b5b54fdfd43768c8058f11c9a728393.test
-import gradle.kotlin.dsl.accessors._bfe43d23ef1e82168548d9455ede94ac.main
 import io.github.morphismmc.morphismgradle.ModProperties
 import net.neoforged.moddevgradle.dsl.ModDevExtension
 import org.gradle.api.Action
@@ -11,8 +11,7 @@ import org.gradle.api.file.ConfigurableFileCollection
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.SetProperty
 import org.gradle.api.tasks.Nested
-import org.gradle.kotlin.dsl.assign
-import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.*
 import org.slf4j.event.Level
 import java.io.File
 import javax.inject.Inject
@@ -37,9 +36,16 @@ abstract class ModExtension @Inject constructor(val project: Project, val modPro
             val test = sourceSets.test.get()
             configure<ModDevExtension> {
                 addModdingDependenciesTo(test)
-                mods {
-                    named(modProperties.modId) {
-                        sourceSet(test)
+                val testMod by mods.register("test") {
+                    sourceSet(sourceSets.main.get())
+                    sourceSet(test)
+                }
+                runs {
+                    register("gameTestClient") {
+                        client()
+                        sourceSet = sourceSets.test
+                        systemProperty("neoforge.enabledGameTestNamespaces", modProperties.modId)
+                        loadedMods.add(testMod)
                     }
                 }
                 runs {
@@ -48,8 +54,9 @@ abstract class ModExtension @Inject constructor(val project: Project, val modPro
                         // By default, the server will crash when no gametests are provided.
                         // The gametest system is also enabled by default for other run configs under the /test command.
                         type = "gameTestServer"
-                        sourceSet = sourceSets.main
+                        sourceSet = sourceSets.test
                         systemProperty("neoforge.enabledGameTestNamespaces", modProperties.modId)
+                        loadedMods.add(testMod)
                     }
                 }
             }

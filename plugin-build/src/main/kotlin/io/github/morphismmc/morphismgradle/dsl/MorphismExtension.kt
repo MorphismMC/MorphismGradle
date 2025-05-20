@@ -1,9 +1,6 @@
 package io.github.morphismmc.morphismgradle.dsl
 
 import gradle.kotlin.dsl.accessors._9b5b54fdfd43768c8058f11c9a728393.*
-import gradle.kotlin.dsl.accessors._9b5b54fdfd43768c8058f11c9a728393.java
-import gradle.kotlin.dsl.accessors._9b5b54fdfd43768c8058f11c9a728393.main
-import gradle.kotlin.dsl.accessors._9b5b54fdfd43768c8058f11c9a728393.sourceSets
 import io.github.morphismmc.morphismgradle.ModProperties
 import org.gradle.api.Action
 import org.gradle.api.Project
