@@ -19,8 +19,8 @@ body:
     attributes:
       label: 🤚 Do you want to develop this feature yourself?
       options:
-        - "No"
         - "Yes"
+        - "No"
       default: 0
     validations:
       required: true
