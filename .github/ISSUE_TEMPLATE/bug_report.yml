@@ -1,17 +1,24 @@
 name: Bug report
 description: Report a bug where something is not working as expected.
-title: "[:bug:Bug]: <title>"
+title: "[🐛Bug]: "
 labels: [ "bug" ]
 body:
   - type: checkboxes
     attributes:
-      label: Checklist
+      label: 📝 Checklist
       description: Please make sure you have checked all these items before submitting your bug report.
       options:
         - label: "I have checked for existing issues, and have found none."
           required: true
         - label: "I have checked that this occurs on the latest version."
           required: true
+  - type: input
+    attributes:
+      label: 🔖 Version
+      description: The version of Library/App you were using when this bug was encountered.
+      placeholder: "Example: v2.3.4"
+    validations:
+      required: true
   - type: textarea
     attributes:
       label: 🐛 Describe the bug
@@ -36,14 +43,14 @@ body:
       description: How we can reproduce the behavior.
       placeholder: |
         1. In this environment...
-        1. With this config...
-        1. Run '...'
-        1. See error...
+        2. With this config...
+        3. Run '...'
+        4. See error...
     validations:
       required: true
   - type: textarea
     attributes:
-      label: ":information_source: Additional Information"
+      label: ℹ️ Additional Information
       description: Any additional information you wish to provide. Please add anything which did not fit into the other sections here.
   - type: markdown
     attributes:
